@@ -3,6 +3,8 @@ package bank;
 import bank.account.AccountType;
 import bank.customer.Customer;
 import bank.customer.RegularCustomer;
+import bank.loan.HomeLoan;
+import bank.loan.LoanType;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -13,13 +15,12 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException, ParseException {
 
-        DateFormat format = new SimpleDateFormat("MM/dd/yyyy");
-        Date date = format.parse("01/25/1997");
+        HomeLoan loan = new HomeLoan("233sdfd", "fssdf23", LoanType.HOME, 5, 600000);
 
-        RegularCustomer customer = new RegularCustomer("Shegufa Taranjum", "shegufa.mim@gmail.com", "123456", AccountType.CURRENT, date.getTime());
+        loan.makeLoan(2000000, 120);
 
-        customer.createAccount();
+        System.out.println("Return Amount " + loan.calculateReturn());
 
-        System.out.println(customer);
+        System.out.println(loan);
     }
 }
