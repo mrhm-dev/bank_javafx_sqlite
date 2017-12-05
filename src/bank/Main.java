@@ -1,20 +1,25 @@
 package bank;
 
-import bank.account.CurrentAccount;
-import bank.account.SavingsAccount;
-import bank.helper.DateTimeHelper;
-import bank.helper.Dater;
+import bank.account.AccountType;
+import bank.customer.Customer;
+import bank.customer.RegularCustomer;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.UUID;
 
 public class Main {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, ParseException {
 
+        DateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+        Date date = format.parse("01/25/1997");
 
+        RegularCustomer customer = new RegularCustomer("Shegufa Taranjum", "shegufa.mim@gmail.com", "123456", AccountType.CURRENT, date.getTime());
+
+        customer.createAccount();
+
+        System.out.println(customer);
     }
 }
