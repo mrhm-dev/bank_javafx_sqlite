@@ -5,20 +5,23 @@ import bank.helper.Dater;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 public class SavingsAccount extends Account {
 
-    private List<SavingsProfile> savings;
+    private LinkedList<SavingsProfile> savings;
 
     // Constructor
     public SavingsAccount(String accountNumber, String accountHolderNumber) {
         super(accountNumber, accountHolderNumber);
+        savings = new LinkedList<>();
     }
 
     // create new savings profile
     public double createSavings(int id, double amount, int month, int interest, int withdrawMonth) {
         SavingsProfile profile = new SavingsProfile(id, amount, month, interest, withdrawMonth);
+        savings.push(profile);
 
         Log log = new Log(accountNumber, "New Savings", new Date().getTime(), "+", amount);
         System.out.println(log.message());
@@ -50,7 +53,13 @@ public class SavingsAccount extends Account {
                 System.out.println("You haven't reach expected time");
             } else {
                 savings.remove(profile);
-                return profile.getTotalReturnAmount((int) dater.month);
+                balance -= profile.getAmount();
+
+                Log log = new Log(accountNumber, "Withdraw", new Date().getTime(), "-", profile.getAmount());
+                System.out.println(log.message());
+
+//                return profile.getTotalReturnAmount((int) dater.month);
+                return profile.getTotalReturnAmount(12);
             }
 
         }else  {

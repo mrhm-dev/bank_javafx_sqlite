@@ -46,12 +46,15 @@ public class SavingsProfile {
 
     // Return Total Returned Amount
     public double getTotalReturnAmount(int month) {
-        double interest = getMonthlyInterest() * month * amount;
+        double interest = getMonthlyInterest() * month * amount / 100;
+        System.out.println("Interest : " + interest);
+
         return amount + interest;
     }
 
     // return monthly interest
     private double getMonthlyInterest() {
-        return interest / 12;
+        System.out.println(interest/12.0);
+        return interest / 12.0;
     }
 }
