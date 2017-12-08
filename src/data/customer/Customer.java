@@ -1,34 +1,45 @@
-package bank.customer;
+package data.customer;
 
-import bank.account.AccountType;
+import data.account.AccountType;
 
-public abstract class Customer {
+public class Customer {
 
     protected String name;
-    protected String id;
+    protected int id;
     protected String email;
     protected String password;
-    protected AccountType accountType;
-    protected String accountId;
+    protected int accountId;
     protected long birthDate;
     protected CustomerType customerType;
 
     // Constructor
-    public Customer(String name, String email, String password, AccountType accountType, long birthDate) {
+
+    public Customer() {
+
+    }
+
+    public Customer(String name, String email, String password, long birthDate) {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.accountType = accountType;
         this.birthDate = birthDate;
     }
 
-    public abstract void createAccount();
+    public Customer(String name, int id, String email, String password, int accountId, long birthDate, CustomerType customerType) {
+        this.name = name;
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.accountId = accountId;
+        this.birthDate = birthDate;
+        this.customerType = customerType;
+    }
 
     public String getName() {
         return name;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -40,11 +51,7 @@ public abstract class Customer {
         return password;
     }
 
-    public AccountType getAccountType() {
-        return accountType;
-    }
-
-    public String getAccountId() {
+    public int getAccountId() {
         return accountId;
     }
 
@@ -64,10 +71,6 @@ public abstract class Customer {
         this.password = password;
     }
 
-    public void setAccountType(AccountType accountType) {
-        this.accountType = accountType;
-    }
-
     public void setCustomerType(CustomerType customerType) {
         this.customerType = customerType;
     }
@@ -79,7 +82,6 @@ public abstract class Customer {
                 ", id='" + id + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", accountType=" + accountType +
                 ", accountId='" + accountId + '\'' +
                 ", birthDate=" + birthDate +
                 ", customerType=" + customerType +

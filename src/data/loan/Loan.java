@@ -1,6 +1,4 @@
-package bank.loan;
-
-import java.util.Date;
+package data.loan;
 
 public abstract class Loan {
 

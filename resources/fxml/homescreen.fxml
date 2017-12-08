@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.HomeScreenController">
+   <children>
+      <Pane prefHeight="96.0" prefWidth="600.0" style="-fx-background-color: #3f3f3f;" AnchorPane.bottomAnchor="304.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="105.0" layoutY="31.0" text="Bank Management System" textFill="#f8eded">
+               <font>
+                  <Font name="Lucida Sans Demibold" size="29.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <AnchorPane layoutY="96.0" prefHeight="306.0" prefWidth="600.0">
+         <children>
+            <TabPane prefHeight="306.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <tabs>
+                <Tab text="Login">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox layoutY="8.0" prefHeight="273.0" prefWidth="311.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="289.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Label text="Please Select Your Account Type">
+                                       <font>
+                                          <Font name="Lohit Gujarati" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="loginTypeComboBox" onAction="#changeLoginType" prefWidth="150.0" />
+                                    <TextField fx:id="loginEmail" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="291.0" promptText="username or email" />
+                                    <PasswordField fx:id="loginPassword" prefHeight="37.0" prefWidth="291.0" promptText="Password" />
+                                    <Button mnemonicParsing="false" onAction="#getLogin" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #42A5F5;" text="Login" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                                 <padding>
+                                    <Insets left="20.0" top="20.0" />
+                                 </padding>
+                              </VBox>
+                           </children></AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="User Registration">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Label layoutX="14.0" layoutY="14.0" prefHeight="19.0" prefWidth="172.0" text="Create an Account">
+                                 <font>
+                                    <Font name="Lucida Sans Demibold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <HBox layoutY="45.0" prefHeight="180.0" prefWidth="600.0" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
+                                 <children>
+                                    <VBox prefHeight="201.0" prefWidth="293.0" spacing="15.0">
+                                       <children>
+                                          <TextField fx:id="createAccountName" prefHeight="37.0" prefWidth="298.0" promptText="Name" />
+                                          <TextField fx:id="createAccountEmail" prefHeight="38.0" prefWidth="298.0" promptText="Email" />
+                                          <PasswordField fx:id="createAccountPassword" prefHeight="38.0" prefWidth="298.0" promptText="Password" />
+                                          <DatePicker fx:id="createAccountDate" prefHeight="40.0" prefWidth="298.0" promptText="Birth Date" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                    <VBox prefHeight="180.0" prefWidth="304.0" spacing="2.0">
+                                       <children>
+                                          <HBox prefHeight="47.0" prefWidth="301.0" spacing="15.0">
+                                             <children>
+                                                <ComboBox fx:id="createAccountYouAre" onAction="#getWhoYouAre" prefHeight="26.0" prefWidth="149.0" promptText="You Are" />
+                                                <ComboBox fx:id="createAccountAccountType" onAction="#getAccountType" prefWidth="150.0" promptText="Account Type" />
+                                             </children>
+                                             <padding>
+                                                <Insets left="15.0" right="15.0" />
+                                             </padding>
+                                          </HBox>
+                                          <Button mnemonicParsing="false" onAction="#createAccount" prefHeight="34.0" prefWidth="146.0" style="-fx-background-color: #42A5F5;" text="Create Account" textFill="WHITE">
+                                             <font>
+                                                <Font name="Lucida Sans Demibold" size="15.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets left="70.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                          <Label fx:id="accountCreatedLabel" text="Can't Create a nedw Account" textFill="#f21111" visible="false">
+                                             <VBox.margin>
+                                                <Insets left="30.0" top="20.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                 </children></HBox>
+                           </children></AnchorPane>
+                  </content>
+                </Tab>
+                  <Tab text="Admin Registration">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

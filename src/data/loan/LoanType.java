@@ -1,4 +1,4 @@
-package bank.loan;
+package data.loan;
 
 public enum LoanType {
 

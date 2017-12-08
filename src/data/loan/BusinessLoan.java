@@ -1,19 +1,19 @@
-package bank.loan;
+package data.loan;
 
 import java.util.Date;
 import java.util.UUID;
 
-public class StudyLoan extends Loan{
+public class BusinessLoan extends Loan {
 
-    private static final int INTEREST = 3;
+    private static final int INTEREST = 7;
 
-    public StudyLoan(String accountId, String customerId, LoanType loanType) {
+    public BusinessLoan(String accountId, String customerId, LoanType loanType) {
         super(accountId, customerId, loanType);
     }
 
     @Override
     public void makeLoan(double loanAmount, int targetMonth) {
-        if (loanType == LoanType.STUDY) {
+        if (loanType == LoanType.BUSINESS) {
             this.loanId = UUID.randomUUID().toString();
             this.loanAmount = loanAmount;
             this.interest = INTEREST;
@@ -22,7 +22,7 @@ public class StudyLoan extends Loan{
             this.creatingDate = new Date().getTime();
             System.out.println("You have made a new Loan of " + loanAmount + " TAKA");
         }else {
-            System.out.println("Study Loan is Not Complete");
+            System.out.println("Business Loan is Not Complete");
         }
     }
 
