@@ -148,8 +148,13 @@ public class HomeScreenController implements Initializable {
 
         if (customer != null) {
             if (customer.getPassword().equals(password)) {
-                Parent profile = FXMLLoader.load(getClass().getResource("/fxml/profile.fxml"));
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/fxml/profile.fxml"));
+                Parent profile = loader.load();
                 Scene scene = new Scene(profile);
+
+                ProfileController controller = loader.getController();
+                controller.setCustomer(customer);
 
                 Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                 window.setScene(scene);
