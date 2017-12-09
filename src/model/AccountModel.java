@@ -79,6 +79,18 @@ public class AccountModel {
         statement.execute();
     }
 
+    public static void updateAccountBalance(int accountId, double amount) throws SQLException {
+        Connection connection = DatabaseConnection.getInstance().getConnection();
+
+        String query = "UPDATE accounts SET balance=? WHERE id=?";
+        PreparedStatement statement = connection.prepareStatement(query);
+
+        statement.setString(1, String.valueOf(amount));
+        statement.setString(2, String.valueOf(accountId));
+
+        statement.execute();
+    }
+
     private static Account generateAccount(ResultSet set) throws SQLException {
         int id = set.getInt("id");
         int userId = set.getInt("userId");

@@ -1,10 +1,12 @@
 package data.loan;
 
-public abstract class Loan {
+import java.util.Date;
 
-    protected String loanId;
-    protected String accountId;
-    protected String customerId;
+public class Loan {
+
+    protected int loanId;
+    protected int accountId;
+    protected int customerId;
     protected LoanType loanType;
     protected double loanAmount;
     protected int interest;
@@ -12,27 +14,48 @@ public abstract class Loan {
     protected double monthlyInstalment;
     protected long creatingDate;
 
-    // Constructor
-    public Loan(String accountId, String customerId, LoanType loanType) {
+    public Loan(int loanId, int accountId, int customerId, LoanType loanType, double loanAmount, int interest, int targetMonth, double monthlyInstalment, long creatingDate) {
+        this.loanId = loanId;
         this.accountId = accountId;
         this.customerId = customerId;
         this.loanType = loanType;
+        this.loanAmount = loanAmount;
+        this.interest = interest;
+        this.targetMonth = targetMonth;
+        this.monthlyInstalment = monthlyInstalment;
+        this.creatingDate = creatingDate;
     }
 
-    // abstract classes related with loan
-    public abstract void makeLoan(double loanAmount, int targetMonth);
-    public abstract double calculateReturn();
-    public abstract double calculateInterest();
+    public Loan(int accountId, int customerId, LoanType loanType, double loanAmount, int interest, int targetMonth) {
+        this.accountId = accountId;
+        this.customerId = customerId;
+        this.loanType = loanType;
+        this.loanAmount = loanAmount;
+        this.interest = interest;
+        this.targetMonth = targetMonth;
+        this.monthlyInstalment = (loanAmount + calculateInterest()) / targetMonth;
+        this.creatingDate = new Date().getTime();
+    }
 
-    public String getLoanId() {
+    public Loan() {
+
+    }
+
+    public double calculateInterest() {
+        double monthlyInterest = interest / 12.0;
+        double interest = loanAmount * monthlyInterest * targetMonth / 100;
+        return interest;
+    }
+
+    public int getLoanId() {
         return loanId;
     }
 
-    public String getAccountId() {
+    public int getAccountId() {
         return accountId;
     }
 
-    public String getCustomerId() {
+    public int getCustomerId() {
         return customerId;
     }
 
@@ -58,6 +81,42 @@ public abstract class Loan {
 
     public long getCreatingDate() {
         return creatingDate;
+    }
+
+    public void setLoanId(int loanId) {
+        this.loanId = loanId;
+    }
+
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
+
+    public void setLoanType(LoanType loanType) {
+        this.loanType = loanType;
+    }
+
+    public void setLoanAmount(double loanAmount) {
+        this.loanAmount = loanAmount;
+    }
+
+    public void setInterest(int interest) {
+        this.interest = interest;
+    }
+
+    public void setTargetMonth(int targetMonth) {
+        this.targetMonth = targetMonth;
+    }
+
+    public void setMonthlyInstalment(double monthlyInstalment) {
+        this.monthlyInstalment = monthlyInstalment;
+    }
+
+    public void setCreatingDate(long creatingDate) {
+        this.creatingDate = creatingDate;
     }
 
     @Override

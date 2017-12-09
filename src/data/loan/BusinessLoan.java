@@ -5,43 +5,22 @@ import java.util.UUID;
 
 public class BusinessLoan extends Loan {
 
-    private static final int INTEREST = 7;
+    public static final int INTEREST = 7;
 
-    public BusinessLoan(String accountId, String customerId, LoanType loanType) {
-        super(accountId, customerId, loanType);
+    public BusinessLoan(int loanId, int accountId, int customerId, LoanType loanType, double loanAmount, int interest, int targetMonth, double monthlyInstalment, long creatingDate) {
+        super(loanId, accountId, customerId, loanType, loanAmount, interest, targetMonth, monthlyInstalment, creatingDate);
     }
 
-    @Override
-    public void makeLoan(double loanAmount, int targetMonth) {
-        if (loanType == LoanType.BUSINESS) {
-            this.loanId = UUID.randomUUID().toString();
-            this.loanAmount = loanAmount;
-            this.interest = INTEREST;
-            this.targetMonth = targetMonth;
-            this.monthlyInstalment = calculateReturn() / targetMonth;
-            this.creatingDate = new Date().getTime();
-            System.out.println("You have made a new Loan of " + loanAmount + " TAKA");
-        }else {
-            System.out.println("Business Loan is Not Complete");
-        }
+    public BusinessLoan(int accountId, int customerId, LoanType loanType, double loanAmount, int interest, int targetMonth) {
+        super(accountId, customerId, loanType, loanAmount, interest, targetMonth);
     }
 
-    @Override
-    public double calculateReturn() {
-
-        return calculateInterest() + loanAmount;
-    }
-
-    @Override
-    public double calculateInterest() {
-
-        double monthlyInterest = INTEREST / 12.0;
-        return loanAmount * monthlyInterest * targetMonth / 100;
+    public BusinessLoan() {
     }
 
     @Override
     public String toString() {
-        return "StudyLoan{" +
+        return "BusinessLoan{" +
                 "loanId='" + loanId + '\'' +
                 ", accountId='" + accountId + '\'' +
                 ", customerId='" + customerId + '\'' +
