@@ -1,5 +1,6 @@
 package sample.controller;
 
+import data.Admin;
 import data.account.Account;
 import data.account.AccountType;
 import data.account.CurrentAccount;
@@ -18,9 +19,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.AccountModel;
+import model.AdminModel;
 import model.CustomerModel;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -133,10 +136,13 @@ public class HomeScreenController implements Initializable {
     @FXML
     private PasswordField loginPassword;
 
+    @FXML
+    private ComboBox<String> loginTypeComboBox;
+
+    private String loginType;
 
     public void changeLoginType(ActionEvent actionEvent) {
-
-        // TODO Login Type will Goes Here
+        loginType = loginTypeComboBox.getValue();
     }
 
     public void getLogin(ActionEvent actionEvent) throws Exception {
@@ -144,22 +150,41 @@ public class HomeScreenController implements Initializable {
         String email = loginEmail.getText();
         String password = loginPassword.getText();
 
-        Customer customer = CustomerModel.getCustomer(email);
+        // User Login
+        if (loginType.equalsIgnoreCase("user")) {
+            Customer customer = CustomerModel.getCustomer(email);
 
-        if (customer != null) {
-            if (customer.getPassword().equals(password)) {
+            if (customer != null) {
+                if (customer.getPassword().equals(password)) {
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(getClass().getResource("/fxml/profile.fxml"));
+                    Parent profile = loader.load();
+                    Scene scene = new Scene(profile);
+
+                    ProfileController controller = loader.getController();
+                    controller.setCustomer(customer);
+
+                    Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                    window.setScene(scene);
+                    window.setResizable(false);
+                    window.show();
+                }
+            }
+            // Admin Login
+        } else if (loginType.equalsIgnoreCase("admin")) {
+            Admin admin = AdminModel.getAdmin(email);
+            if (admin != null && admin.getPassword().equals(password)) {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/fxml/profile.fxml"));
-                Parent profile = loader.load();
-                Scene scene = new Scene(profile);
+                loader.setLocation(getClass().getResource("/fxml/admin.fxml"));
+                Scene adminScene = new Scene(loader.load());
 
-                ProfileController controller = loader.getController();
-                controller.setCustomer(customer);
+                AdminController controller = loader.getController();
+                controller.setAdmin(admin);
 
-                Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                window.setScene(scene);
-                window.setResizable(false);
-                window.show();
+                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                stage.setScene(adminScene);
+                stage.setResizable(false);
+                stage.show();
             }
         }
     }
@@ -177,5 +202,47 @@ public class HomeScreenController implements Initializable {
         // Add Account Type To ComboBox
         createAccountAccountType.getItems().addAll(AccountType.CURRENT, AccountType.SAVINGS);
 
+        // Add Login Type to ComboBox
+        loginTypeComboBox.getItems().addAll("ADMIN", "USER");
+    }
+
+
+    // Create Admin Section
+
+    @FXML
+    private TextField createAdminName;
+
+    @FXML
+    private TextField createAdminEmail;
+
+    @FXML
+    private PasswordField createAdminPassword;
+
+    @FXML
+    private Label createAdminSuccessLabel;
+
+    @FXML
+    private Label createAdminFailedLabel;
+
+
+    public void createAdmin(ActionEvent actionEvent) throws SQLException {
+
+        String name = createAdminName.getText();
+        String email = createAdminEmail.getText();
+        String password = createAdminPassword.getText();
+
+        Admin admin = new Admin(name, email, password);
+        AdminModel.createAdmin(admin);
+
+        if (admin != null) {
+            createAdminSuccessLabel.setVisible(true);
+            System.out.println("Admin Created Successfully...");
+        } else {
+            createAdminFailedLabel.setVisible(true);
+        }
+
+        createAdminName.setText("");
+        createAdminEmail.setText("");
+        createAdminPassword.setText("");
     }
 }

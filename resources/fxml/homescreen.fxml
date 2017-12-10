@@ -41,7 +41,7 @@
                                           <Font name="Lohit Gujarati" size="15.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="loginTypeComboBox" onAction="#changeLoginType" prefWidth="150.0" />
+                                    <ComboBox fx:id="loginTypeComboBox" onAction="#changeLoginType" prefWidth="150.0" promptText="Account Type" />
                                     <TextField fx:id="loginEmail" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="291.0" promptText="username or email" />
                                     <PasswordField fx:id="loginPassword" prefHeight="37.0" prefWidth="291.0" promptText="Password" />
                                     <Button mnemonicParsing="false" onAction="#getLogin" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #42A5F5;" text="Login" textFill="WHITE">
@@ -111,7 +111,20 @@
                 </Tab>
                   <Tab text="Admin Registration">
                     <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Label layoutX="46.0" layoutY="14.0" text="Create Admin Account">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="createAdminName" layoutX="46.0" layoutY="60.0" prefHeight="35.0" prefWidth="205.0" promptText="Enter Name" />
+                              <TextField fx:id="createAdminEmail" layoutX="45.0" layoutY="119.0" prefHeight="35.0" prefWidth="205.0" promptText="Enter Email" />
+                              <PasswordField fx:id="createAdminPassword" layoutX="46.0" layoutY="181.0" prefHeight="35.0" prefWidth="203.0" promptText="Enter Password" />
+                              <Button layoutX="356.0" layoutY="116.0" mnemonicParsing="false" onAction="#createAdmin" prefHeight="42.0" prefWidth="85.0" text="Submit" />
+                              <Label fx:id="createAdminSuccessLabel" layoutX="322.0" layoutY="173.0" text="Account Created Successfully" textFill="#11b51c" visible="false" />
+                              <Label fx:id="createAdminFailedLabel" layoutX="322.0" layoutY="191.0" text="Account Creation Failed" textFill="#cd0808" visible="false" />
+                           </children></AnchorPane>
                     </content>
                   </Tab>
               </tabs>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.AdminController">
+   <children>
+      <Label layoutX="286.0" layoutY="14.0" text="Admin Panel">
+         <font>
+            <Font name="Lucida Sans Demibold" size="20.0" />
+         </font>
+      </Label>
+      <TabPane layoutX="-2.0" layoutY="56.0" prefHeight="351.0" prefWidth="708.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Customers">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="230.0" prefWidth="692.0">
+                     <children>
+                        <TableView fx:id="customerTable" layoutY="53.0" prefHeight="268.0" prefWidth="708.0" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="53.0">
+                          <columns>
+                            <TableColumn fx:id="customerId" prefWidth="75.0" text="ID" />
+                            <TableColumn fx:id="customerName" prefWidth="159.0" text="Name" />
+                              <TableColumn fx:id="customerEmail" prefWidth="206.0" text="Email" />
+                              <TableColumn fx:id="customerType" prefWidth="138.0" text="Customer Type" />
+                              <TableColumn fx:id="customerAccountNo" prefWidth="128.0" text="Account No" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="14.0" layoutY="23.0" text="All Customer">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Accounts">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="accountTable" layoutY="59.0" prefHeight="262.0" prefWidth="706.0">
+                          <columns>
+                            <TableColumn fx:id="accountId" prefWidth="118.00003051757812" text="ID" />
+                              <TableColumn fx:id="accountType" prefWidth="180.0" text="Account Type" />
+                              <TableColumn fx:id="accountBalance" prefWidth="118.0" text="Balance" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="14.0" layoutY="20.0" text="Accounts Details">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Loans">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="32.0" layoutY="21.0" text="Loan Details">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="loanTable" layoutY="59.0" prefHeight="260.0" prefWidth="706.0">
+                          <columns>
+                            <TableColumn fx:id="loanId" prefWidth="75.0" text="ID" />
+                            <TableColumn fx:id="loanAccountId" prefWidth="110.0" text="AC ID" />
+                              <TableColumn fx:id="loanCustomerId" prefWidth="133.0" text="Cus ID" />
+                              <TableColumn fx:id="loanType" prefWidth="139.0" text="Loan Type" />
+                              <TableColumn fx:id="loanAmount" prefWidth="111.0" text="Loan Amount" />
+                              <TableColumn fx:id="loanInstallment" prefWidth="137.0" text="Installment" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <Button layoutX="629.0" layoutY="18.0" mnemonicParsing="false" onAction="#logout" text="logout" />
+   </children>
+</AnchorPane>

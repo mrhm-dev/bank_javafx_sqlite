@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 
 public class AccountModel {
 
@@ -30,6 +32,22 @@ public class AccountModel {
             return generateAccount(set);
         }
         return null;
+    }
+
+    public static List<Account> getAccounts() throws SQLException {
+        Connection connection = DatabaseConnection.getInstance().getConnection();
+
+        String query = "SELECT * FROM accounts";
+        PreparedStatement statement = connection.prepareStatement(query);
+        ResultSet set = statement.executeQuery();
+
+        LinkedList<Account> accounts = new LinkedList<>();
+
+        while (set.next()) {
+            accounts.push(generateAccount(set));
+        }
+
+        return accounts;
     }
 
     public static Account getAccountByCustomer(int id) throws SQLException {

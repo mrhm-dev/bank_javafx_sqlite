@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 public class LoanModel {
 
@@ -28,6 +30,21 @@ public class LoanModel {
         }
         return null;
 
+    }
+
+    public static List<Loan> getLoans() throws SQLException {
+        Connection connection = DatabaseConnection.getInstance().getConnection();
+        String query = "SELECT * FROM loans";
+        PreparedStatement statement = connection.prepareStatement(query);
+        ResultSet set = statement.executeQuery();
+
+        LinkedList<Loan> loans = new LinkedList<>();
+
+        while (set.next()) {
+            loans.push(generateLoan(set));
+        }
+
+        return loans;
     }
 
     // Create Loan from Loan Object
